@@ -46,6 +46,17 @@ fibonacci() {
 
 numero_invertido() {
   echo "Bienvenido a los números invertidos"
+  numero=$(pedir_entero)
+  digito=0
+  rev=""
+  while [ $numero -gt 0 ]
+  do
+    digito=$(( $numero % 10 ))
+    numero=$(( $numero / 10 ))
+    rev=$( echo ${rev}${digito} )
+  done
+  echo "$rev"
+  volver_a_menu
 }
 
 cant_lineas() {

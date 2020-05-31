@@ -33,7 +33,7 @@ fibonacci() {
   a=0
   b=1
   suma=0
-  read -p "Ingrese un numero:" cantidad
+  cantidad=$(pedir_entero)
   for i in `seq 1 $cantidad`
   do
     echo "$a"
@@ -64,6 +64,15 @@ volver_a_menu() {
   read -n 1 -p "Presione cualquier tecla para volver al menu principal"
   clear
   menu
+}
+
+pedir_entero() {
+  read -p "Ingrese un numero entero mayor a 0: " cantidad
+  while ! [[ "$cantidad" =~ ^[1-9]+$ ]]
+    do
+      read -p "Por favor, ingrese un numero que sea entero y mayor a 0: " cantidad
+  done
+  echo "$cantidad"
 }
 
 salir() {

@@ -53,19 +53,22 @@ numero_invertido() {
 
 palindromo() {
   echo "Bienvenido a los caracteres palindromos"
-  read -p "Ingrese una cadena de caracteres:" cadena
+  read -p "Ingrese una cadena de caracteres: " cadena
   inverso=$(obtener_inverso $cadena)
   if [ $cadena -eq $inverso ];
   then
-      echo "Es palindromo"
+    echo "Es palindromo"
   else
-      echo "No es palindromo"
+    echo "No es palindromo"
   fi
   volver_a_menu
 }
 
 cant_lineas() {
   echo "Bienvenido a la cantidad de lineas de un archivo"
+  read -p "Ingrese ruta al archivo: " archivo
+  echo $(wc -l $archivo)
+  volver_a_menu
 }
 
 numeros_ordenados() {

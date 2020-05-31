@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# FUNCTIONS #
+# MAIN FUNCTIONS #
 menu () {
   echo "Bienvenido al menu!"
   mostrar_opciones
@@ -47,15 +47,20 @@ fibonacci() {
 numero_invertido() {
   echo "Bienvenido a los números invertidos"
   numero=$(pedir_entero)
-  digito=0
-  rev=""
-  while [ $numero -gt 0 ]
-  do
-    digito=$(( $numero % 10 ))
-    numero=$(( $numero / 10 ))
-    rev=$( echo ${rev}${digito} )
-  done
-  echo "$rev"
+  obtener_inverso $numero
+  volver_a_menu
+}
+
+palindromo() {
+  echo "Bienvenido a los caracteres palindromos"
+  read -p "Ingrese una cadena de caracteres:" cadena
+  inverso=$(obtener_inverso $cadena)
+  if [ $cadena -eq $inverso ];
+  then
+      echo "Es palindromo"
+  else
+      echo "No es palindromo"
+  fi
   volver_a_menu
 }
 
@@ -69,21 +74,6 @@ numeros_ordenados() {
 
 archivos_por_tipo() {
   echo "Bienvenido a los archivos por tipo de un directorio"
-}
-
-volver_a_menu() {
-  read -n 1 -p "Presione cualquier tecla para volver al menu principal"
-  clear
-  menu
-}
-
-pedir_entero() {
-  read -p "Ingrese un numero entero mayor a 0: " cantidad
-  while ! [[ "$cantidad" =~ ^[1-9]+$ ]]
-    do
-      read -p "Por favor, ingrese un numero que sea entero y mayor a 0: " cantidad
-  done
-  echo "$cantidad"
 }
 
 salir() {
@@ -100,6 +90,35 @@ invalido() {
   read -n 1
   clear
   menu
+}
+
+# HELPERS #
+volver_a_menu() {
+  read -n 1 -p "Presione cualquier tecla para volver al menu principal"
+  clear
+  menu
+}
+
+pedir_entero() {
+  read -p "Ingrese un numero entero mayor a 0: " cantidad
+  while ! [[ "$cantidad" =~ ^[1-9]+$ ]]
+    do
+      read -p "Por favor, ingrese un numero que sea entero y mayor a 0: " cantidad
+  done
+  echo "$cantidad"
+}
+
+obtener_inverso() {
+  frase=$1
+  caracter=0
+  rev=""
+  while [ $frase -gt 0 ]
+  do
+    caracter=$(( $frase % 10 ))
+    frase=$(( $frase / 10 ))
+    rev=$( echo ${rev}${caracter} )
+  done
+  echo "$rev"
 }
 
 # MAIN #

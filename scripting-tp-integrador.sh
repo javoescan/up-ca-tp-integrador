@@ -5,6 +5,7 @@ menu () {
   echo "Bienvenido al menu!"
   mostrar_opciones
   read -n 1 -p "Elija una opción:" opcion
+  clear
   case $opcion in
     1) fibonacci break;;
     2) numero_invertido break;;
@@ -29,6 +30,18 @@ mostrar_opciones() {
 
 fibonacci() {
   echo "Bienvenido a la serie Fibonacci"
+  a=0
+  b=1
+  suma=0
+  read -p "Ingrese un numero:" cantidad
+  for i in `seq 1 $cantidad`
+  do
+    echo "$a"
+    suma=$((a+b))
+    a=$b
+    b=$suma
+  done
+  volver_a_menu
 }
 
 numero_invertido() {
@@ -47,7 +60,14 @@ archivos_por_tipo() {
   echo "Bienvenido a los archivos por tipo de un directorio"
 }
 
+volver_a_menu() {
+  read -n 1 -p "Presione cualquier tecla para volver al menu principal"
+  clear
+  menu
+}
+
 salir() {
+  echo ""
   echo "Gracias por haber usado el menu!"
   echo "Presioná cualquier tecla para cerrar la consola"
   read -n 1

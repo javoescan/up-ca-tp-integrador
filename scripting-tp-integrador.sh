@@ -4,7 +4,7 @@
 menu () {
   echo "Bienvenido al menu!"
   mostrar_opciones
-  read -n 1 -p "Elija una opción:" opcion
+  read -p "Elija una opción:" opcion
   clear
   case $opcion in
     1) fibonacci break;;
@@ -82,31 +82,32 @@ archivos_por_tipo() {
 salir() {
   echo ""
   echo "Gracias por haber usado el menu!"
-  echo "Presioná cualquier tecla para cerrar la consola"
-  read -n 1
+  echo "Presione enter para cerrar el programa"
+  read dummy
   exit
 }
 
 invalido() {
   echo "Su selección es incorrecta!"
-  echo "Presioná cualquier tecla para volver a intentarlo"
-  read -n 1
+  echo "Presione enter para volver a intentarlo"
+  read dummy
   clear
   menu
 }
 
 # HELPERS #
 volver_a_menu() {
-  read -n 1 -p "Presione cualquier tecla para volver al menu principal"
+  echo "Presione enter para volver al menu"
+  read dummy
   clear
   menu
 }
 
 pedir_entero() {
   read -p "Ingrese un numero entero mayor a 0: " cantidad
-  while ! [[ "$cantidad" =~ ^[1-9]+$ ]]
-    do
-      read -p "Por favor, ingrese un numero que sea entero y mayor a 0: " cantidad
+  while ! echo "$cantidad" | egrep -q '^\-?[1-9]+$';
+  do
+    read -p "Por favor, ingrese un numero que sea entero y mayor a 0: " cantidad
   done
   echo "$cantidad"
 }

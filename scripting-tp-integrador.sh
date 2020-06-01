@@ -86,6 +86,13 @@ numeros_ordenados() {
 
 archivos_por_tipo() {
   echo "Bienvenido a los archivos por tipo de un directorio"
+  read -p "Ingrese ruta al directorio: " directorio
+  for archivo in $directorio/*
+  do
+    echo "$(file $archivo)"
+  done
+  echo ""
+  volver_a_menu
 }
 
 salir() {

@@ -2,6 +2,7 @@
 
 # MAIN FUNCTIONS #
 menu () {
+  clear
   echo "Bienvenido al menu!"
   mostrar_opciones
   read -p "Elija una opción:" opcion
@@ -73,6 +74,14 @@ cant_lineas() {
 
 numeros_ordenados() {
   echo "Bienvenido a los numeros ordenados"
+  numeros=""
+  for i in `seq 1 5`
+  do
+    numeros="${numeros}$(pedir_entero) "
+  done
+  echo $numeros | tr " " "\n" | sort -V | tr "\n" " "
+  echo ""
+  volver_a_menu
 }
 
 archivos_por_tipo() {

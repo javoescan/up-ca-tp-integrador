@@ -97,7 +97,7 @@ archivos_por_tipo() {
 
 salir() {
   echo ""
-  echo "Gracias por haber usado el menu!"
+  echo "Gracias $(whoami) por haber usado el menu!"
   echo "Presione enter para cerrar el programa"
   read dummy
   exit

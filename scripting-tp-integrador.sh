@@ -87,10 +87,16 @@ numeros_ordenados() {
 archivos_por_tipo() {
   echo "Bienvenido a los archivos por tipo de un directorio"
   read -p "Ingrese ruta al directorio: " directorio
-  for archivo in $directorio/*
+  while [ ! -d $directorio ]
   do
-    echo "$(file $archivo)"
+    read -p "Ingrese ruta al directorio: " directorio
   done
+  archivos="$(find $directorio -maxdepth 1 -type f | sed -e 's/.*\(\.[a-zA-Z0-9_-]*\)$/\1/' | sort | uniq -c)"
+  directorios="$(find $directorio -mindepth 1 -maxdepth 1 -type d | wc -l)"
+  echo "ARCHIVOS"
+  echo $archivos
+  echo "DIRECTORIOS"
+  echo $directorios
   echo ""
   volver_a_menu
 }

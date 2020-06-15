@@ -114,3 +114,4 @@ fi
 
 export JAVA_HOME=/opt/jdk1.8.0_131
 export PATH=$JAVA_HOME/bin:$PATH
+export CATALINA_HOME=/opt/apache-tomcat-9.0.36
